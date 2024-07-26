@@ -26,29 +26,45 @@ const Contact = () => {
               ].map((member, index) => (
                 <li key={index} className="flex justify-between items-center bg-gray-50 p-4 rounded-lg shadow-sm">
                   <span className="font-medium text-gray-800">{member.name}</span>
-                  <div className="flex items-center space-x-4">
-                    <span className="text-gray-600">{member.phone}</span>
-                    <button
-                      className="text-blue-500 hover:underline"
-                      onClick={() => handleCopy(member.phone)}
-                      aria-label={`Copy ${member.name}'s phone number`}
-                    >
-                      {copied === member.phone ? 'Copied!' : 'Copy'}
-                    </button>
-                    <a
-                      href={`tel:${member.phone}`}
-                      className="text-blue-500 hover:underline hidden md:block"
-                      aria-label={`Call ${member.name}`}
-                    >
-                      Call
-                    </a>
-                    <a
-                      href={`mailto:${member.email}`}
-                      className="text-blue-500 hover:underline"
-                      aria-label={`Email ${member.name}`}
-                    >
-                      {member.email === '[Email]' ? 'Add Email' : 'Email'}
-                    </a>
+                  <div className="relative group">
+                    <span className="text-gray-600 cursor-pointer">{member.phone}</span>
+                    <div className="absolute left-0 top-0 mt-6 bg-white border rounded-lg shadow-lg p-2 hidden group-hover:flex space-x-2">
+                      <button
+                        className="text-blue-500 hover:underline"
+                        onClick={() => handleCopy(member.phone)}
+                        aria-label={`Copy ${member.name}'s phone number`}
+                      >
+                        {copied === member.phone ? 'Copied!' : 'Copy'}
+                      </button>
+                      <a
+                        href={`tel:${member.phone}`}
+                        className="text-blue-500 hover:underline"
+                        aria-label={`Call ${member.name}`}
+                      >
+                        Call
+                      </a>
+                    </div>
+                  </div>
+                  <div className="relative group">
+                    <span className="text-blue-500 hover:underline cursor-pointer">{member.email === '[Email]' ? 'Add Email' : member.email}</span>
+                    <div className="absolute left-0 top-0 mt-6 bg-white border rounded-lg shadow-lg p-2 hidden group-hover:flex space-x-2">
+                      <button
+                        className="text-blue-500 hover:underline"
+                        onClick={() => handleCopy(member.email)}
+                        aria-label={`Copy ${member.name}'s email`}
+                      >
+                        {copied === member.email ? 'Copied!' : 'Copy'}
+                      </button>
+                      {member.email !== '[Email]' && (
+                        <a
+                          href={`mailto:${member.email}`}
+                          className="text-blue-500 hover:underline"
+                          aria-label={`Email ${member.name}`}
+                        >
+                          Email
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </li>
               ))}
