@@ -1,9 +1,11 @@
-import React from 'react'
-
+import React from "react"
 function App() {
   return (
-    <div>App</div>
-  )
+    //jo yaha likhuga vo website pe dikhega.
+    <>
+    <h1>Radhe Radhe</h1>
+    </>
+ )
 }
 
 export default App
